@@ -63,11 +63,13 @@ description: "Task list template for feature implementation"
 Examples of foundational tasks (adjust based on your project):
 
 - [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
+- [ ] T005 [P] Implement authentication/authorization framework (Security by Design)
+- [ ] T006 [P] Setup API routing and middleware structure (Automation-Oriented API Design)
 - [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
+- [ ] T008 Configure error handling and logging infrastructure (Observability and Monitoring)
 - [ ] T009 Setup environment configuration management
+- [ ] T010 [P] Implement caching and performance optimization (Scalability and Performance)
+- [ ] T011 [P] Setup testing framework and CI/CD pipeline (Maintainability and Reliability)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

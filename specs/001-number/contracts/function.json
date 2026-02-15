@@ -1,0 +1,185 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Package Sorting API",
+    "version": "1.0.0",
+    "description": "REST API for sorting packages into appropriate stacks based on dimensions and mass"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/sort": {
+      "post": {
+        "summary": "Sort a package into the appropriate stack",
+        "description": "Determines the stack (STANDARD, SPECIAL, or REJECTED) for a package based on its dimensions and mass",
+        "operationId": "sortPackage",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackageRequest"
+              },
+              "example": {
+                "width": 10.0,
+                "height": 10.0,
+                "length": 10.0,
+                "mass": 5.0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Package sorted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageResponse"
+                },
+                "example": {
+                  "stack": "STANDARD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": "All dimensions and mass must be positive numbers"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health check endpoint",
+        "description": "Returns the health status of the API",
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "healthy"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PackageRequest": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "number",
+            "format": "float",
+            "description": "Width in centimeters",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "height": {
+            "type": "number",
+            "format": "float",
+            "description": "Height in centimeters",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "length": {
+            "type": "number",
+            "format": "float",
+            "description": "Length in centimeters",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "mass": {
+            "type": "number",
+            "format": "float",
+            "description": "Mass in kilograms",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          }
+        },
+        "required": ["width", "height", "length", "mass"]
+      },
+      "PackageResponse": {
+        "type": "object",
+        "properties": {
+          "stack": {
+            "type": "string",
+            "enum": ["STANDARD", "SPECIAL", "REJECTED"],
+            "description": "The stack where the package should be dispatched"
+          }
+        },
+        "required": ["stack"]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "required": ["error"]
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "loc": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "msg": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

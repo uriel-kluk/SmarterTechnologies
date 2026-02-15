@@ -100,6 +100,16 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## Constitution Alignment
+
+*Ensure the specification adheres to the project constitution principles.*
+
+- **Automation-Oriented API Design**: Specify API endpoints with machine-readable responses and idempotent operations.
+- **Security by Design**: Include security requirements such as authentication methods and data protection.
+- **Scalability and Performance**: Define performance targets and scalability considerations.
+- **Maintainability and Reliability**: Outline testing and documentation requirements.
+- **Observability and Monitoring**: Plan for logging and monitoring integration.
+
 ## Success Criteria *(mandatory)*
 
 <!--

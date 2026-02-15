@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] Automation-Oriented API Design: Plan includes API endpoints designed for machine consumption with idempotent operations and JSON responses.
+- [ ] Security by Design: Incorporates authentication, authorization, encryption, and compliance measures.
+- [ ] Scalability and Performance: Addresses load balancing, caching, and performance goals.
+- [ ] Maintainability and Reliability: Includes modular architecture, testing strategy, and documentation plans.
+- [ ] Observability and Monitoring: Plans for logging, metrics, and health checks.
 
 ## Project Structure
 
